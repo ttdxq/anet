@@ -36,10 +36,10 @@ func Interfaces() ([]net.Interface, error) {
 	if err != nil {
 		return nil, &net.OpError{Op: "route", Net: "ip+net", Source: nil, Addr: nil, Err: err}
 	}
-	if len(ift) != 0 {
-		zoneCache.update(ift, true)
-		zoneCacheX.update(ift, true)
-	}
+	//if len(ift) != 0 {
+	//	zoneCache.update(ift, true)
+	//	zoneCacheX.update(ift, true)
+	//}
 	return ift, nil
 }
 
@@ -93,10 +93,10 @@ func InterfaceByName(name string) (*net.Interface, error) {
 	if err != nil {
 		return nil, &net.OpError{Op: "route", Net: "ip+net", Source: nil, Addr: nil, Err: err}
 	}
-	if len(ift) != 0 {
-		zoneCache.update(ift, true)
-		zoneCacheX.update(ift, true)
-	}
+	//if len(ift) != 0 {
+	//	zoneCache.update(ift, true)
+	//	zoneCacheX.update(ift, true)
+	//}
 	for _, ifi := range ift {
 		if name == ifi.Name {
 			return &ifi, nil
@@ -161,11 +161,11 @@ type ipv6ZoneCache struct {
 	toName       map[int]string // interface index to its name
 }
 
-//go:linkname zoneCache net.zoneCache
-var zoneCache ipv6ZoneCache
+// //go:linkname zoneCache net.zoneCache
+//var zoneCache ipv6ZoneCache
 
-//go:linkname zoneCacheX golang.org/x/net/internal/socket.zoneCache
-var zoneCacheX ipv6ZoneCache
+// //go:linkname zoneCacheX golang.org/x/net/internal/socket.zoneCache
+//var zoneCacheX ipv6ZoneCache
 
 // update refreshes the network interface information if the cache was last
 // updated more than 1 minute ago, or if force is set. It reports whether the
